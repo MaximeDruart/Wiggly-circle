@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/wiggly-circle/static/css/main.28c48bb8.chunk.css",
+    "main.js": "/wiggly-circle/static/js/main.9a402e9a.chunk.js",
+    "main.js.map": "/wiggly-circle/static/js/main.9a402e9a.chunk.js.map",
+    "runtime-main.js": "/wiggly-circle/static/js/runtime-main.130ee72e.js",
+    "runtime-main.js.map": "/wiggly-circle/static/js/runtime-main.130ee72e.js.map",
+    "static/js/2.e087e6a4.chunk.js": "/wiggly-circle/static/js/2.e087e6a4.chunk.js",
+    "static/js/2.e087e6a4.chunk.js.map": "/wiggly-circle/static/js/2.e087e6a4.chunk.js.map",
+    "index.html": "/wiggly-circle/index.html",
+    "precache-manifest.fc2777aa5328bdf06b5a90d4baf0d9fb.js": "/wiggly-circle/precache-manifest.fc2777aa5328bdf06b5a90d4baf0d9fb.js",
+    "service-worker.js": "/wiggly-circle/service-worker.js",
+    "static/css/main.28c48bb8.chunk.css.map": "/wiggly-circle/static/css/main.28c48bb8.chunk.css.map",
+    "static/js/2.e087e6a4.chunk.js.LICENSE.txt": "/wiggly-circle/static/js/2.e087e6a4.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.130ee72e.js",
+    "static/js/2.e087e6a4.chunk.js",
+    "static/css/main.28c48bb8.chunk.css",
+    "static/js/main.9a402e9a.chunk.js"
+  ]
+}
