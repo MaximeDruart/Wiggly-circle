@@ -1,10 +1,16 @@
 const gui = new dat.GUI()
 
+let img, mask
+preload = () => {
+	img = loadImage("./njs-levels.png")
+}
+
 setup = () => {
 	createCanvas(windowWidth, windowHeight)
+	mask = createGraphics(img.width, img.height)
 	stroke(0)
 	angleMode(DEGREES)
-	// frameRate(2)
+	pixelDensity(1)
 }
 
 const c = function() {
@@ -22,6 +28,7 @@ const c = function() {
 		variation: 8
 	}
 }
+
 let yOffset = 0
 let ctrl = new c()
 gui.add(ctrl, "noiseStrength", 0.05, 0.9)
@@ -31,10 +38,19 @@ gui.add(ctrl, "yOffsetIncrement", 0.01, 0.2)
 // gui.add(ctrl.stroke, "variation", 2, 20, 1).name("Stroke variation")
 
 draw = () => {
+	console.log(frameRate());
+	let distanceToCenter = {
+		x : ((width / 2 - abs(width / 2 - mouseX)) / width * 2),
+		y  :(height / 2 - abs(height / 2 - mouseY)) / height * 2
+	}
+	ctrl.noiseStrength = distanceToCenter.x * distanceToCenter.y
+	ctrl.noiseStrength = constrain(ctrl.noiseStrength, 0.08, 0.7)
+	mask.clear()
 	clear()
-	translate(windowWidth / 2, windowHeight / 2)
+	mask.push()
+	mask.translate(mask.width / 2, mask.height / 2)	
+	mask.fill(0)
 	yOffset += ctrl.yOffsetIncrement
-	noFill()
 	ctrl.stroke.size += map(noise(yOffset), 0, 1, -1, 1)
 	ctrl.stroke.size = constrain(
 		ctrl.stroke.size,
@@ -47,7 +63,7 @@ draw = () => {
 		ctrl.size.baseValue - ctrl.size.variation,
 		ctrl.size.baseValue + ctrl.size.variation
 	)
-	beginShape()
+	mask.beginShape()
 	for (
 		let j = ctrl.size.value - ctrl.stroke.size;
 		j < ctrl.size.value + ctrl.stroke.size;
@@ -75,8 +91,13 @@ draw = () => {
 					1 - ctrl.noiseStrength,
 					1 + ctrl.noiseStrength
 				)
-			curveVertex(xValue, yValue)
+			mask.curveVertex(xValue, yValue)
 		}
 	}
-	endShape()
+	mask.endShape()
+	mask.pop()
+	let imgCopy = img.get()
+	translate(windowWidth / 2 - img.width / 2, windowHeight / 2 - img.height /2)
+	imgCopy.mask(mask)
+	image(imgCopy, 0,0)
 }
